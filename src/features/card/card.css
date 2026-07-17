@@ -121,78 +121,6 @@
   color: var(--text-muted);
 }
 
-.pocket__status {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.35rem;
-  flex-shrink: 0;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-.pocket__status-icons {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.pocket__lang {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  margin-left: 0.15rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-}
-
-.pocket__lang-btn {
-  color: var(--text-muted);
-  padding: 0.1rem 0.15rem;
-  transition: color 0.15s, text-shadow 0.15s;
-}
-
-.pocket__lang-btn:hover {
-  color: var(--amber-bright);
-}
-
-.pocket__lang-btn--active {
-  color: var(--amber-glow);
-  text-shadow: 0 0 8px rgba(232, 160, 74, 0.55);
-}
-
-.pocket__lang-sep {
-  color: var(--amber-dim);
-  opacity: 0.7;
-}
-
-.pocket__icon {
-  display: block;
-  opacity: 0.85;
-}
-
-.pocket__led {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--led-blue);
-  box-shadow:
-    0 0 6px var(--led-blue),
-    0 0 14px rgba(58, 158, 255, 0.5);
-  animation: led-pulse 2.2s ease-in-out infinite;
-}
-
-.pocket__id-code {
-  letter-spacing: 0.06em;
-}
-
-.pocket__online {
-  color: var(--amber-glow);
-  letter-spacing: 0.12em;
-}
-
 .pocket__body {
   flex: 1;
   display: flex;
@@ -333,14 +261,6 @@
   color: var(--text-primary);
 }
 
-.pocket__battery--low {
-  color: #c45a3a;
-}
-
-.pocket__battery--charging {
-  color: var(--amber-glow);
-}
-
 @keyframes reveal-in {
   from {
     opacity: 0;
@@ -374,27 +294,6 @@
   justify-content: flex-end;
 }
 
-.pocket__scan {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--amber-glow);
-  border: 1px solid var(--glass-border);
-  padding: 0.2rem 0.45rem;
-  background: rgba(201, 137, 58, 0.12);
-  transition:
-    color 0.15s,
-    border-color 0.15s,
-    box-shadow 0.15s;
-}
-
-.pocket__scan:hover {
-  color: var(--text-primary);
-  border-color: var(--amber-bright);
-  box-shadow: 0 0 10px rgba(232, 160, 74, 0.25);
-}
-
 .pocket__location--locating {
   animation: locate-pulse 1.2s ease-in-out infinite alternate;
 }
@@ -408,17 +307,48 @@
   }
 }
 
+@media (max-width: 640px) {
+  .pocket__ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .pocket__cta {
+    width: 100%;
+    text-align: center;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .pocket__header {
+    padding: 0.75rem 0.85rem 0.65rem;
+    gap: 0.65rem;
+  }
+
+  .pocket__body {
+    padding: 0.75rem 0.85rem;
+    gap: 0.75rem;
+  }
+
+  .pocket__footer {
+    padding: 0.55rem 0.85rem;
+  }
+
+  .pocket__tagline {
+    font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+    line-height: 1.35;
+  }
+}
+
 @media (max-width: 520px) {
   .pocket__header {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .pocket__status {
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  .pocket__header .device-status {
+    align-items: flex-end;
   }
 
   .pocket__scroll {

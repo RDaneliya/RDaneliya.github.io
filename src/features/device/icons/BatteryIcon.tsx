@@ -1,4 +1,5 @@
 import { useLocale } from '../../../i18n/LocaleProvider'
+import { formatMessage } from '../../../lib/formatMessage'
 
 type BatteryIconProps = {
   level: number
@@ -11,15 +12,14 @@ export function BatteryIcon({ level, charging, supported }: BatteryIconProps) {
   const fillWidth = Math.max(1.5, 12 * (supported ? level : 1))
   const percent = Math.round((supported ? level : 1) * 100)
   const low = supported && level <= 0.2 && !charging
-  const title = supported
-    ? charging
-      ? `${t.batteryCharging} · ${t.batteryLevel.replace('{percent}', String(percent))}`
-      : t.batteryLevel.replace('{percent}', String(percent))
-    : t.batteryLevel.replace('{percent}', '—')
+  const levelLabel = formatMessage(t.batteryLevel, {
+    percent: supported ? percent : '—',
+  })
+  const title = supported && charging ? `${t.batteryCharging} · ${levelLabel}` : levelLabel
 
   return (
     <svg
-      className={`pocket__icon pocket__battery${low ? ' pocket__battery--low' : ''}${charging ? ' pocket__battery--charging' : ''}`}
+      className={`device-status__icon device-status__battery${low ? ' device-status__battery--low' : ''}${charging ? ' device-status__battery--charging' : ''}`}
       width="22"
       height="12"
       viewBox="0 0 22 12"

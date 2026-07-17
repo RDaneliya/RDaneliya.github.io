@@ -9,21 +9,21 @@ export function LanguageToggle() {
   }
 
   return (
-    <div className="pocket__lang" role="group" aria-label={t.language}>
+    <div className="device-status__lang" role="group" aria-label={t.language}>
       <button
         type="button"
-        className={`pocket__lang-btn${locale === 'en' ? ' pocket__lang-btn--active' : ''}`}
+        className={`device-status__lang-btn${locale === 'en' ? ' device-status__lang-btn--active' : ''}`}
         onClick={() => select('en')}
         aria-pressed={locale === 'en'}
       >
         EN
       </button>
-      <span className="pocket__lang-sep" aria-hidden="true">
+      <span className="device-status__lang-sep" aria-hidden="true">
         /
       </span>
       <button
         type="button"
-        className={`pocket__lang-btn${locale === 'ru' ? ' pocket__lang-btn--active' : ''}`}
+        className={`device-status__lang-btn${locale === 'ru' ? ' device-status__lang-btn--active' : ''}`}
         onClick={() => select('ru')}
         aria-pressed={locale === 'ru'}
       >

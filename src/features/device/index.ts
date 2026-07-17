@@ -1,2 +1,5 @@
 export { PocketFrame } from './PocketFrame'
 export { EffectsOverlay } from './EffectsOverlay'
+export { DeviceStatus } from './DeviceStatus'
+export { DeviceChip } from './DeviceChip'
+export { LanguageToggle } from './LanguageToggle'

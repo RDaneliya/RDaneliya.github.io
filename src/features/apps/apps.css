@@ -1,0 +1,110 @@
+.apps {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.apps__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 1.75rem) 1rem;
+  border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0;
+}
+
+.apps__identity {
+  min-width: 0;
+}
+
+.apps__title {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--amber-glow);
+}
+
+.apps__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2.5vw, 1.25rem);
+  align-content: center;
+  padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 3vw, 1.75rem);
+  min-height: 0;
+}
+
+.apps__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  padding: clamp(0.85rem, 2.5vw, 1.15rem) 0.5rem;
+  border: 1px solid var(--glass-border);
+  background: rgba(201, 137, 58, 0.1);
+  color: var(--amber-glow);
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+}
+
+.apps__tile:hover {
+  background: rgba(232, 160, 74, 0.2);
+  border-color: var(--amber-bright);
+  color: var(--text-primary);
+  box-shadow: 0 0 18px rgba(232, 160, 74, 0.22);
+}
+
+.apps__tile:focus-visible {
+  outline: 1px solid var(--amber-bright);
+  outline-offset: 2px;
+}
+
+.apps__tile--offline {
+  opacity: 0.55;
+}
+
+.apps__tile--offline:hover {
+  box-shadow: 0 0 12px rgba(232, 160, 74, 0.15);
+}
+
+.apps__glyph {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--amber-bright);
+}
+
+.apps__label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .apps__header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.75rem 0.85rem 0.65rem;
+  }
+
+  .apps__header .device-status {
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 380px) {
+  .apps__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,5 +1,6 @@
 import { useLocale } from '../../i18n/LocaleProvider'
 import type { LocationStatus } from '../../hooks/useVisitorLocation'
+import { DeviceChip } from '../device'
 
 type CardFooterProps = {
   coords: string
@@ -17,9 +18,7 @@ export function CardFooter({ coords, location, status, onScan }: CardFooterProps
       <span>{coords}</span>
       <span className="pocket__footer-right">
         {showScan ? (
-          <button type="button" className="pocket__scan" onClick={onScan}>
-            {t.locationScan}
-          </button>
+          <DeviceChip onClick={onScan}>{t.locationScan}</DeviceChip>
         ) : null}
         <span className={status === 'locating' ? 'pocket__location--locating' : undefined}>
           {showScan ? t.locationIdle : location}

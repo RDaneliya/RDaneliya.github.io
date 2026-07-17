@@ -31,4 +31,14 @@ export type Messages = {
   revealedLinks: string
   systemFault: string
   systemFaultReload: string
+  appsTitle: string
+  appMessage: string
+  appSnake: string
+  appTetris: string
+  appOffline: string
+  appsMenu: string
+  snakeScore: string
+  snakeGameOver: string
+  snakeRestart: string
+  snakeHint: string
 }

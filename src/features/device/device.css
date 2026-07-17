@@ -1,16 +1,21 @@
-/* Pocket device shell — fixed height, slides open horizontally */
+/* Pocket device shell — fits viewport, slides open horizontally */
 .pocket-stage {
+  --stage-pad: clamp(0.5rem, 2vw, 1.75rem);
   position: relative;
   z-index: 10;
   display: grid;
   place-items: center;
   height: 100%;
   width: 100%;
-  padding: clamp(0.75rem, 2.5vw, 1.75rem);
+  max-height: 100%;
+  padding: var(--stage-pad);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .pocket-device {
-  --device-h: min(720px, 92vh);
+  /* Cap to viewport minus stage padding so the shell never forces page scroll. */
+  --device-h: min(720px, calc(100vh - 2 * var(--stage-pad, 0.5rem)));
   --rail-w: 32px;
   --device-open-w: min(1180px, calc(100vw - 1rem));
   --plastic: #c8c1b4;
@@ -20,10 +25,17 @@
   display: flex;
   align-items: stretch;
   height: var(--device-h);
+  max-height: var(--device-h);
   width: calc(var(--rail-w) * 2);
   max-width: var(--device-open-w);
   transition: width 1.25s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+@supports (height: 100dvh) {
+  .pocket-device {
+    --device-h: min(720px, calc(100dvh - 2 * var(--stage-pad, 0.5rem)));
+  }
 }
 
 .pocket-device--open {

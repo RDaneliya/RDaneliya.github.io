@@ -45,6 +45,16 @@ const en: Messages = {
   revealedLinks: 'Revealed contacts',
   systemFault: 'SYSTEM FAULT',
   systemFaultReload: 'Reload',
+  appsTitle: 'APPLICATIONS',
+  appMessage: 'Message',
+  appSnake: 'Snake',
+  appTetris: 'Tetris',
+  appOffline: 'OFFLINE',
+  appsMenu: 'Menu',
+  snakeScore: 'SCORE {score}',
+  snakeGameOver: 'SIGNAL LOST',
+  snakeRestart: 'Restart',
+  snakeHint: 'Arrows / WASD',
 }
 
 const ru: Messages = {
@@ -90,6 +100,16 @@ const ru: Messages = {
   revealedLinks: 'Открытые контакты',
   systemFault: 'СБОЙ СИСТЕМЫ',
   systemFaultReload: 'Перезагрузка',
+  appsTitle: 'ПРИЛОЖЕНИЯ',
+  appMessage: 'Сообщение',
+  appSnake: 'Змейка',
+  appTetris: 'Тетрис',
+  appOffline: 'НЕТ СВЯЗИ',
+  appsMenu: 'Меню',
+  snakeScore: 'СЧЁТ {score}',
+  snakeGameOver: 'СИГНАЛ ПОТЕРЯН',
+  snakeRestart: 'Заново',
+  snakeHint: 'Стрелки / WASD',
 }
 
 export const messages: Record<Locale, Messages> = { en, ru }

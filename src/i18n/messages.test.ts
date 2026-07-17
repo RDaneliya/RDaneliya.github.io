@@ -33,6 +33,16 @@ const requiredKeys: (keyof Messages)[] = [
   'revealedLinks',
   'systemFault',
   'systemFaultReload',
+  'appsTitle',
+  'appMessage',
+  'appSnake',
+  'appTetris',
+  'appOffline',
+  'appsMenu',
+  'snakeScore',
+  'snakeGameOver',
+  'snakeRestart',
+  'snakeHint',
 ]
 
 describe('i18n messages', () => {
