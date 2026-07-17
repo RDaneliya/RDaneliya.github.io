@@ -86,7 +86,7 @@
 .pocket__avatar-mark {
   width: 16px;
   height: 16px;
-  border: 1.5px solid var(--amber-bright);
+  border: 2px solid var(--amber-bright);
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(232, 160, 74, 0.5);
 }
@@ -115,7 +115,7 @@
 
 .pocket__home {
   margin-top: 0.2rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   color: var(--text-muted);
@@ -136,7 +136,7 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.8rem;
   color: var(--amber);
   letter-spacing: 0.04em;
@@ -175,7 +175,7 @@
 }
 
 .pocket__cta {
-  font-family: var(--font-ui);
+  font-family: var(--font-ui), system-ui, sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -241,7 +241,7 @@
 }
 
 .pocket__revealed-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -249,7 +249,7 @@
 }
 
 .pocket__revealed-link {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.85rem;
   color: var(--amber-glow);
   text-shadow: 0 0 10px rgba(232, 160, 74, 0.35);
@@ -280,7 +280,7 @@
   padding: 0.85rem clamp(1rem, 3vw, 1.75rem);
   border-top: 1px solid var(--glass-border);
   flex-shrink: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.7rem;
   color: var(--text-muted);
   letter-spacing: 0.06em;
@@ -345,10 +345,6 @@
   .pocket__header {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .pocket__header .device-status {
-    align-items: flex-end;
   }
 
   .pocket__scroll {

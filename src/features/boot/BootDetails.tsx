@@ -4,6 +4,11 @@ import type { BootMeters as MetersState } from './useBootSequence'
 
 type BootLine = { status: 'OK' | 'WAIT'; msg: string; delay: number }
 
+const LINE_STATUS_CLASS: Record<BootLine['status'], string> = {
+  OK: 'boot__line--ok',
+  WAIT: 'boot__line--wait',
+}
+
 type BootDetailsProps = {
   details: boolean
   bootLines: BootLine[]
@@ -34,7 +39,7 @@ export function BootDetails({
           {bootLines.slice(0, visibleCount).map((line) => (
             <li
               key={`${line.status}-${line.msg}`}
-              className={`boot__line boot__line--${line.status.toLowerCase()}`}
+              className={`boot__line ${LINE_STATUS_CLASS[line.status]}`}
             >
               <span className="boot__status">[ {line.status.padEnd(4, ' ')} ]</span>
               <span className="boot__msg">{line.msg}</span>

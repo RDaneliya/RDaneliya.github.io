@@ -10,8 +10,8 @@
   --glass: rgba(26, 18, 8, 0.55);
   --glass-border: rgba(232, 160, 74, 0.45);
   --led-blue: #3a9eff;
-  --font-ui: 'Exo 2', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-ui: 'Exo 2';
+  --font-mono: 'JetBrains Mono';
 }
 
 *,
@@ -42,7 +42,7 @@ body,
 body {
   background: var(--bg-deep);
   color: var(--text-primary);
-  font-family: var(--font-ui);
+  font-family: var(--font-ui), system-ui, sans-serif;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -85,7 +85,7 @@ button {
   padding: 2rem 2.5rem;
   border: 1px solid var(--glass-border);
   background: rgba(20, 14, 8, 0.75);
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
 }
 
 .fault__title {
@@ -95,7 +95,7 @@ button {
 }
 
 .fault__reload {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;

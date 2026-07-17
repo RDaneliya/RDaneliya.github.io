@@ -4,7 +4,7 @@
   align-items: flex-end;
   gap: 0.35rem;
   flex-shrink: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.7rem;
   color: var(--text-muted);
 }
@@ -54,7 +54,7 @@
   align-items: center;
   gap: 0.2rem;
   margin-left: 0.15rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.65rem;
   letter-spacing: 0.08em;
 }
@@ -82,7 +82,7 @@
 }
 
 .device-chip {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;

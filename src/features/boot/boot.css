@@ -7,7 +7,7 @@
   height: 100%;
   width: 100%;
   padding: 1.25rem 1.25rem 3.25rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   color: var(--amber-bright);
   min-height: 0;
   gap: 1rem;
@@ -57,7 +57,7 @@
 }
 
 .boot__title {
-  font-family: var(--font-ui);
+  font-family: var(--font-ui), system-ui, sans-serif;
   font-size: clamp(1.05rem, 3vw, 1.35rem);
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -89,11 +89,11 @@
   left: 50%;
   width: 7px;
   height: 7px;
-  margin: -3.5px;
+  margin: 0;
   border-radius: 50%;
   background: var(--amber-glow);
   box-shadow: 0 0 8px rgba(232, 160, 74, 0.7);
-  transform: rotate(var(--angle)) translateY(-22px);
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-22px);
   animation: throbber-pulse 1s ease-in-out infinite;
   animation-delay: calc(var(--i) * -0.125s);
 }
@@ -157,8 +157,8 @@
 .boot--details .boot__throbber-dot {
   width: 5px;
   height: 5px;
-  margin: -2.5px;
-  transform: rotate(var(--angle)) translateY(-15px);
+  margin: 0;
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-15px);
 }
 
 .boot--details .boot__brand {
@@ -305,7 +305,7 @@
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -362,11 +362,11 @@
   0%,
   100% {
     opacity: 0.2;
-    transform: rotate(var(--angle)) translateY(-22px) scale(0.75);
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-22px) scale(0.75);
   }
   50% {
     opacity: 1;
-    transform: rotate(var(--angle)) translateY(-22px) scale(1.15);
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-22px) scale(1.15);
   }
 }
 
@@ -378,11 +378,11 @@
   0%,
   100% {
     opacity: 0.2;
-    transform: rotate(var(--angle)) translateY(-15px) scale(0.75);
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-15px) scale(0.75);
   }
   50% {
     opacity: 1;
-    transform: rotate(var(--angle)) translateY(-15px) scale(1.15);
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-15px) scale(1.15);
   }
 }
 

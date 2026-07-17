@@ -2,7 +2,7 @@ import type { ComponentType } from 'react'
 import type { Messages } from '../../i18n/types'
 import { MessageAppIcon, SnakeAppIcon, TetrisAppIcon } from './icons'
 
-/** Screens that can be opened from the apps menu. */
+/** Screens that can be opened from the app's menu. */
 export type LaunchableAppId = 'card' | 'snake'
 
 /** Catalog entries, including stubs that are not launchable yet. */

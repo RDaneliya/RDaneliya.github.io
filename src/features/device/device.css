@@ -205,25 +205,25 @@
 .pocket__corner--tl {
   top: 6px;
   left: 6px;
-  border-width: 1.5px 0 0 1.5px;
+  border-width: 2px 0 0 2px;
 }
 
 .pocket__corner--tr {
   top: 6px;
   right: 6px;
-  border-width: 1.5px 1.5px 0 0;
+  border-width: 2px 2px 0 0;
 }
 
 .pocket__corner--bl {
   bottom: 6px;
   left: 6px;
-  border-width: 0 0 1.5px 1.5px;
+  border-width: 0 0 2px 2px;
 }
 
 .pocket__corner--br {
   bottom: 6px;
   right: 6px;
-  border-width: 0 1.5px 1.5px 0;
+  border-width: 0 2px 2px 0;
 }
 
 .pocket__scroll {
@@ -259,8 +259,7 @@
 
 .pocket__header,
 .pocket__body,
-.pocket__footer,
-.boot {
+.pocket__footer {
   position: relative;
   z-index: 1;
 }

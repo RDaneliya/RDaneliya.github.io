@@ -27,7 +27,7 @@
 }
 
 .snake__title {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -36,7 +36,7 @@
 }
 
 .snake__score {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   color: var(--text-muted);
@@ -118,7 +118,7 @@
 }
 
 .snake__overlay-title {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.85rem;
   letter-spacing: 0.22em;
   color: var(--amber-glow);
@@ -132,7 +132,7 @@
 }
 
 .snake__action {
-  font-family: var(--font-ui);
+  font-family: var(--font-ui), system-ui, sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -144,7 +144,7 @@
 }
 
 .snake__hint {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;

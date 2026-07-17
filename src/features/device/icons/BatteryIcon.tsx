@@ -17,9 +17,18 @@ export function BatteryIcon({ level, charging, supported }: BatteryIconProps) {
   })
   const title = supported && charging ? `${t.batteryCharging} · ${levelLabel}` : levelLabel
 
+  const batteryClass = [
+    'device-status__icon',
+    'device-status__battery',
+    low ? 'device-status__battery--low' : null,
+    charging ? 'device-status__battery--charging' : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <svg
-      className={`device-status__icon device-status__battery${low ? ' device-status__battery--low' : ''}${charging ? ' device-status__battery--charging' : ''}`}
+      className={batteryClass}
       width="22"
       height="12"
       viewBox="0 0 22 12"
