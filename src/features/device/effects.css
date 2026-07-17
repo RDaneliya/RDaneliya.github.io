@@ -1,0 +1,97 @@
+/* Effects overlay */
+.effects {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.effects__dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(232, 160, 74, 0.35) 1px,
+    transparent 1.2px
+  );
+  background-size: 6px 6px;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+}
+
+.effects__scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  opacity: 0.55;
+}
+
+.effects__glare {
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(
+    125deg,
+    transparent 20%,
+    rgba(255, 220, 160, 0.08) 38%,
+    rgba(255, 230, 180, 0.14) 42%,
+    rgba(255, 220, 160, 0.06) 48%,
+    transparent 65%
+  );
+  transform: skewX(-8deg);
+  animation: glare-drift 18s ease-in-out infinite alternate;
+}
+
+.effects__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(10, 8, 5, 0.55) 100%
+  );
+}
+
+.effects__flicker {
+  position: absolute;
+  inset: 0;
+  background: rgba(232, 160, 74, 0.03);
+  animation: screen-flicker 4.5s steps(2, end) infinite;
+  opacity: 0;
+}
+
+@keyframes glare-drift {
+  from {
+    transform: skewX(-8deg) translateX(-4%);
+  }
+  to {
+    transform: skewX(-8deg) translateX(4%);
+  }
+}
+
+@keyframes screen-flicker {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+  }
+  93% {
+    opacity: 0.35;
+  }
+  94% {
+    opacity: 0;
+  }
+  96% {
+    opacity: 0.2;
+  }
+  97% {
+    opacity: 0;
+  }
+}
+

@@ -1,0 +1,100 @@
+:root {
+  --bg-deep: #0a0805;
+  --bg-amber: #1a1208;
+  --amber-dim: #8a5c28;
+  --amber: #c9893a;
+  --amber-bright: #e8a04a;
+  --amber-glow: #f0c078;
+  --text-primary: #f5f0e6;
+  --text-muted: rgba(232, 160, 74, 0.7);
+  --glass: rgba(26, 18, 8, 0.55);
+  --glass-border: rgba(232, 160, 74, 0.45);
+  --led-blue: #3a9eff;
+  --font-ui: 'Exo 2', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+.app {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(201, 137, 58, 0.12), transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(138, 92, 40, 0.1), transparent 45%),
+    linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-amber) 55%, #0d0a06 100%);
+}
+
+.fault {
+  display: grid;
+  place-items: center;
+}
+
+.fault__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem 2.5rem;
+  border: 1px solid var(--glass-border);
+  background: rgba(20, 14, 8, 0.75);
+  font-family: var(--font-mono);
+}
+
+.fault__title {
+  letter-spacing: 0.28em;
+  color: var(--amber-glow);
+  text-shadow: 0 0 16px rgba(232, 160, 74, 0.45);
+}
+
+.fault__reload {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--glass-border);
+  color: var(--amber-bright);
+  background: rgba(201, 137, 58, 0.12);
+}
+
+.fault__reload:hover {
+  border-color: var(--amber-bright);
+  color: var(--text-primary);
+}
+
