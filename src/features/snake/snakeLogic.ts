@@ -69,21 +69,6 @@ export function randomEmptyCell(
       if (!occupied.has(`${x},${y}`)) free.push({ x, y })
     }
   }
-  // #region agent log
-  fetch('http://127.0.0.1:7556/ingest/18dac558-42c8-46ea-b864-70e913d80697', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'c9c3ee' },
-    body: JSON.stringify({
-      sessionId: 'c9c3ee',
-      runId: 'post-fix',
-      hypothesisId: 'C',
-      location: 'snakeLogic.ts:randomEmptyCell',
-      message: 'food spawn',
-      data: { freeCount: free.length, snakeLen: snake.length, cols, rows },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {})
-  // #endregion
   if (free.length === 0) return null
   return free[Math.floor(random() * free.length)]!
 }
@@ -112,43 +97,12 @@ export function tickSnake(
   const head = snake[0]!
   const next = stepPoint(head, direction)
   const willGrow = next.x === food.x && next.y === food.y
-  const bodyForCollision = occupiedAfterMove(snake, willGrow)
-  const out = isOutOfBounds(next)
-  const selfHit = hitsSelf(next, bodyForCollision)
+  const body = occupiedAfterMove(snake, willGrow)
 
-  // #region agent log
-  fetch('http://127.0.0.1:7556/ingest/18dac558-42c8-46ea-b864-70e913d80697', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'c9c3ee' },
-    body: JSON.stringify({
-      sessionId: 'c9c3ee',
-      runId: 'post-fix',
-      hypothesisId: 'A-B',
-      location: 'snakeLogic.ts:tickSnake',
-      message: 'collision check',
-      data: {
-        next,
-        willGrow,
-        out,
-        selfHit,
-        tip: snake[snake.length - 1],
-        bodyLenForCollision: bodyForCollision.length,
-        hitTipOnly:
-          !willGrow &&
-          snake.length > 0 &&
-          next.x === snake[snake.length - 1]!.x &&
-          next.y === snake[snake.length - 1]!.y,
-      },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {})
-  // #endregion
-
-  if (out || selfHit) {
+  if (isOutOfBounds(next) || hitsSelf(next, body)) {
     return { snake, food, score, alive: false }
   }
 
-  const body = bodyForCollision
   const nextSnake = [next, ...body]
   const nextFood = willGrow ? (randomEmptyCell(nextSnake) ?? food) : food
   const nextScore = willGrow ? score + 1 : score

@@ -19,9 +19,10 @@ type GameState = {
 
 function createInitialState(): GameState {
   const snake = createInitialSnake()
+  const food = randomEmptyCell(snake)
   return {
     snake,
-    food: randomEmptyCell(snake),
+    food: food ?? { x: 0, y: 0 },
     score: 0,
     alive: true,
   }
