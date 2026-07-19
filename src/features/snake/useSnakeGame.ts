@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   createInitialSnake,
-  isOpposite,
+  enqueueDirection,
   randomEmptyCell,
   tickSnake,
   type Direction,
@@ -62,9 +62,11 @@ export function useSnakeGame() {
   }, [])
 
   const queueDirection = useCallback((next: Direction) => {
-    const current = queuedRef.current ?? directionRef.current
-    if (isOpposite(current, next)) return
-    queuedRef.current = next
+    queuedRef.current = enqueueDirection(
+      directionRef.current,
+      queuedRef.current,
+      next,
+    )
   }, [])
 
   useEffect(() => {

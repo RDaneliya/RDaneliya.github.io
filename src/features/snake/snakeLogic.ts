@@ -28,6 +28,21 @@ export function isOpposite(a: Direction, b: Direction): boolean {
   return opposite[a] === b
 }
 
+/**
+ * Buffer at most one turn until the next tick.
+ * Always reject reverses relative to the committed (in-effect) direction so
+ * rapid perpendicular presses cannot stack into a 180° turn in one tick.
+ */
+export function enqueueDirection(
+  committed: Direction,
+  queued: Direction | null,
+  next: Direction,
+): Direction | null {
+  if (isOpposite(committed, next)) return queued
+  if (queued !== null) return queued
+  return next
+}
+
 export function isOutOfBounds(point: Point, cols = SNAKE_COLS, rows = SNAKE_ROWS): boolean {
   return point.x < 0 || point.y < 0 || point.x >= cols || point.y >= rows
 }
@@ -36,12 +51,17 @@ export function hitsSelf(point: Point, snake: Point[]): boolean {
   return snake.some((segment) => segment.x === point.x && segment.y === point.y)
 }
 
+/** Body cells that remain occupied after this tick (excludes vacating tip when not growing). */
+export function occupiedAfterMove(snake: Point[], willGrow: boolean): Point[] {
+  return willGrow ? snake : snake.slice(0, -1)
+}
+
 export function randomEmptyCell(
   snake: Point[],
   cols = SNAKE_COLS,
   rows = SNAKE_ROWS,
   random = Math.random,
-): Point {
+): Point | null {
   const occupied = new Set(snake.map((p) => `${p.x},${p.y}`))
   const free: Point[] = []
   for (let y = 0; y < rows; y++) {
@@ -49,7 +69,22 @@ export function randomEmptyCell(
       if (!occupied.has(`${x},${y}`)) free.push({ x, y })
     }
   }
-  if (free.length === 0) return { x: 0, y: 0 }
+  // #region agent log
+  fetch('http://127.0.0.1:7556/ingest/18dac558-42c8-46ea-b864-70e913d80697', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'c9c3ee' },
+    body: JSON.stringify({
+      sessionId: 'c9c3ee',
+      runId: 'post-fix',
+      hypothesisId: 'C',
+      location: 'snakeLogic.ts:randomEmptyCell',
+      message: 'food spawn',
+      data: { freeCount: free.length, snakeLen: snake.length, cols, rows },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {})
+  // #endregion
+  if (free.length === 0) return null
   return free[Math.floor(random() * free.length)]!
 }
 
@@ -76,16 +111,47 @@ export function tickSnake(
 } {
   const head = snake[0]!
   const next = stepPoint(head, direction)
+  const willGrow = next.x === food.x && next.y === food.y
+  const bodyForCollision = occupiedAfterMove(snake, willGrow)
+  const out = isOutOfBounds(next)
+  const selfHit = hitsSelf(next, bodyForCollision)
 
-  if (isOutOfBounds(next) || hitsSelf(next, snake)) {
+  // #region agent log
+  fetch('http://127.0.0.1:7556/ingest/18dac558-42c8-46ea-b864-70e913d80697', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'c9c3ee' },
+    body: JSON.stringify({
+      sessionId: 'c9c3ee',
+      runId: 'post-fix',
+      hypothesisId: 'A-B',
+      location: 'snakeLogic.ts:tickSnake',
+      message: 'collision check',
+      data: {
+        next,
+        willGrow,
+        out,
+        selfHit,
+        tip: snake[snake.length - 1],
+        bodyLenForCollision: bodyForCollision.length,
+        hitTipOnly:
+          !willGrow &&
+          snake.length > 0 &&
+          next.x === snake[snake.length - 1]!.x &&
+          next.y === snake[snake.length - 1]!.y,
+      },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {})
+  // #endregion
+
+  if (out || selfHit) {
     return { snake, food, score, alive: false }
   }
 
-  const grew = next.x === food.x && next.y === food.y
-  const body = grew ? snake : snake.slice(0, -1)
+  const body = bodyForCollision
   const nextSnake = [next, ...body]
-  const nextFood = grew ? randomEmptyCell(nextSnake) : food
-  const nextScore = grew ? score + 1 : score
+  const nextFood = willGrow ? (randomEmptyCell(nextSnake) ?? food) : food
+  const nextScore = willGrow ? score + 1 : score
 
   return {
     snake: nextSnake,
